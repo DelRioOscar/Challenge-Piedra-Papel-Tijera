@@ -1,0 +1,30 @@
+@mixin phone {
+    @media (max-width: 425px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin game($url, $color, $size) {
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-size: 80px;
+    background-position: center;
+    width: $size;
+    height: $size;
+    background-color: white;
+    border: 20px solid $color;
+    padding: 20px;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}

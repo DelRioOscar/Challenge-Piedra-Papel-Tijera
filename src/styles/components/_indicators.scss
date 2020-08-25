@@ -1,0 +1,48 @@
+.indicators {
+    border: 3px solid $headerOutline;
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    margin: auto;
+
+    .indicators__types {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .indicators__type {
+            color: white;
+            text-transform: uppercase;
+            margin: 0;
+        }
+    }
+
+    .indicators__scores {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        width: 120px;
+        height: 90px;
+        border-radius: 10px;
+
+        .indicators__title {
+            color: $scoreText;
+        }
+
+        .indicators__score {
+            margin: 0;
+            color: $darkText;
+            font-size: 50px;
+        }
+    }
+}
+
+@include tablet {
+    .indicators {
+        width: 90%;
+    }
+}

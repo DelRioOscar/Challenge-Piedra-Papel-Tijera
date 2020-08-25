@@ -1,0 +1,28 @@
+.body {
+    background-color: $radialGradient;
+    font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.modal__open {
+    opacity: .4;
+    overflow: hidden;
+}
+
+.rules {
+    display: flex;
+    justify-content: flex-end;
+    .rules__link {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+        border: 1px solid white;
+        padding: 8px 30px;
+        border-radius: 10px;
+    }
+}
+
+@include phone {
+    .rules {
+        justify-content: center;
+    }
+}

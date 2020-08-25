@@ -1,0 +1,20 @@
+.btn {
+    padding: 16px 30px;
+    text-transform: uppercase;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.btn__primary {
+    @extend .btn;
+    background-color: white;
+    color: $darkText;
+
+    &:hover {
+        color: red;
+    }
+}

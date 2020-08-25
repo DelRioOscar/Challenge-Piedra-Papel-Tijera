@@ -1,0 +1,155 @@
+.game {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 100px auto;
+    background-image: url("assets/images/bg-triangle.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 450px;
+    .game__rock {
+        @include game("assets/images/icon-rock.svg", $rockGradient, 100px);
+        bottom: 0;
+    }
+
+    .game__paper {
+        @include game("assets/images/icon-paper.svg", $paperGradient, 100px);
+        left: 0;
+    }
+
+    .game__scissor {
+        @include game("assets/images/icon-scissors.svg", $scissorsGradient, 100px);
+        right: 0;
+    }
+}
+
+.game__result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 700px;
+    height: 600px;
+    margin: 10px auto;
+
+    .game__you,
+    .game__rival {
+        text-align: center;
+        color: white;
+        font-size: 28px;
+    }
+
+    .game__rock {
+        @include game("assets/images/icon-rock.svg", $rockGradient, 150px);
+        position: static;
+    }
+
+    .game__paper {
+        @include game("assets/images/icon-paper.svg", $paperGradient, 150px);
+        position: static;
+    }
+
+    .game__scissor {
+        @include game("assets/images/icon-scissors.svg", $scissorsGradient, 150px);
+        position: static;
+    }
+
+    .game--winner {
+        box-shadow: 0px 0px 5px 12px rgba(255, 254, 254, 0.151);
+        animation: boxAnimation 4s infinite;
+    }
+
+    .game__final {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .game__title {
+            color: white;
+            font-size: 24px;
+        }
+    }
+}
+
+.game__selected {
+    text-align: center;
+
+    .game__title {
+        color: white;
+    }
+}
+
+.game--process {
+    transition: transform 2s;
+    transform: rotate(3turn);
+}
+
+@include tablet {
+    .game {
+        width: 80%;
+        background-size: 80%;
+    }
+    .game__result {
+        width: 100%;
+        justify-content: space-evenly;
+        .game__final {
+            position: absolute;
+            bottom: -120px;
+            transform: translate(50%, -50%);
+            right: 50%;
+
+            .game__title {
+                font-size: 40px;
+                margin: 10px 0px;
+            }
+        }
+    }
+}
+
+@include phone {
+    .game {
+        width: 100%;
+        margin: 40px auto;
+
+        .game__rock {
+            @include game("assets/images/icon-rock.svg", $rockGradient, 80px);
+            bottom: 0;
+        }
+
+        .game__paper {
+            @include game("assets/images/icon-paper.svg", $paperGradient, 80px);
+            left: 0;
+        }
+
+        .game__scissor {
+            @include game("assets/images/icon-scissors.svg", $scissorsGradient, 80px);
+            right: 0;
+        }
+    }
+
+    .game__you,.game__rival {
+        p {
+            font-size: 21px; 
+        }
+        
+        .game__paper, .game__rock, .game__scissor{
+              
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        
+    }
+}
+
+@keyframes boxAnimation {
+    0% {
+        box-shadow: 0px 0px 5px 12px rgba(255, 254, 254, 0.151);
+    }
+    50% {
+        box-shadow: 0px 0px 5px 12px rgba(255, 254, 254, 0.151), 0px 0px 10px 20px rgba(255, 254, 254, 0.247);
+    }
+}

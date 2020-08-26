@@ -1,5 +1,11 @@
 # cachipun
 
+DEMO:
+https://piedra-papel-tijera-portafolio.herokuapp.com/
+
+Desafio de Frontend Mentor
+https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH
+
 ## Project setup
 ```
 npm install

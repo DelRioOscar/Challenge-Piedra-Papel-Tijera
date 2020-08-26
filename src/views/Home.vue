@@ -18,6 +18,7 @@
       :rivalSelected="enemySelected"
       :yourSelected="typeSelected"
       :final="winner"
+      :participant="participants"
     ></result>
     <template v-if="!isResult">
       <section class="game__selected" v-if="typeSelected">
@@ -29,9 +30,9 @@
       </section>
 
       <section class="game" v-bind:class="{'game--process': isProcessing}">
-        <div @click="onSelected('Papel')" class="game__paper"></div>
-        <div @click="onSelected('Tijera')" class="game__scissor"></div>
-        <div @click="onSelected('Piedra')" class="game__rock"></div>
+        <div @click="onSelected('Papel', 'game__paper')" class="game__paper"></div>
+        <div @click="onSelected('Tijera', 'game__scissor')" class="game__scissor"></div>
+        <div @click="onSelected('Piedra', 'game__rock')" class="game__rock"></div>
       </section>
     </template>
   </div>
@@ -54,12 +55,22 @@ export default {
       max: 2,
       min: 0,
       enemySelected: "",
-      possibilities: ["Papel", "Tijera", "Piedra"],
-      isLoading: false
+      possibilities: [
+        { name: 'Papel', classType: 'game__paper'},
+        { name: 'Tijera', classType: 'game__scissor'},
+        { name: 'Piedra', classType: 'game__rock'},
+      ],
+      isLoading: false,
+      participants: {
+        you: '',
+        rival: ''
+      }
     };
   },
   methods: {
-    onSelected(name) {
+    onSelected(name, classType) {
+
+      this.participants.you = classType;
       this.typeSelected = name;
       this.isProcessing = true;
 
@@ -72,7 +83,7 @@ export default {
           const enemy = Math.floor(
             Math.random() * (this.max - this.min + 1) + this.min
           );
-          this.enemySelected = this.possibilities[enemy];
+          this.enemySelected = this.possibilities[enemy].name;
           this.validate();
         }, 2000);
       }
@@ -87,21 +98,25 @@ export default {
       } else {
         if (this.enemySelected == "Papel" && this.typeSelected == "Tijera") {
           this.winner = "Has Ganado";
+          this.participants.rival = this.possibilities[0].classType;
           this.score++;
         } else if (
           this.enemySelected == "Tijera" &&
           this.typeSelected == "Piedra"
         ) {
           this.winner = "Has Ganado";
+          this.participants.rival = this.possibilities[1].classType;
           this.score++;
         } else if (
           this.enemySelected == "Papel" &&
           this.typeSelected == "Tijera"
         ) {
           this.winner = "Has Ganado";
+          this.participants.rival = this.possibilities[2].classType;
           this.score++;
         } else {
           this.winner = "Has Perdido";
+          this.participants.rival = this.possibilities.find(p => p.name == this.enemySelected).classType;
           if (this.score > 0) {
             this.score--;
           }

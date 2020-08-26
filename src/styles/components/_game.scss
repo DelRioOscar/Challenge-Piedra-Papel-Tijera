@@ -137,12 +137,21 @@
         
         .game__paper, .game__rock, .game__scissor{
               
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             margin: 0 auto;
         }
         
     }
+
+    .game__result {
+        .game__final {
+            .game__title {
+                font-size: 30px;
+            }
+        }
+    }
+    
 }
 
 @keyframes boxAnimation {

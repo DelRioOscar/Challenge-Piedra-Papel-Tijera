@@ -26,7 +26,7 @@
       </section>
 
       <section class="game__selected" v-if="!typeSelected">
-        <h1 class="game__title">Selecciona Piedra, Papel y Tijera</h1>
+        <h1 class="game__title">Selecciona Piedra, Papel o Tijera</h1>
       </section>
 
       <section class="game" v-bind:class="{'game--process': isProcessing}">
@@ -115,9 +115,19 @@ export default {
           this.typeSelected == "Tijera"
         ) {
           this.winner = "Has Ganado";
+          this.participants.rival = this.possibilities[0].classType;
+          this.score++;
+        }
+        else if (
+          this.enemySelected == "Piedra" &&
+          this.typeSelected == "Papel"
+        ) {
+          this.winner = "Has Ganado";
           this.participants.rival = this.possibilities[2].classType;
           this.score++;
-        } else {
+        }
+        
+        else {
           this.winner = "Has Perdido";
           this.participants.rival = this.possibilities.find(
             (p) => p.name == this.enemySelected

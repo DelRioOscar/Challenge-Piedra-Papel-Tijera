@@ -56,20 +56,19 @@ export default {
       min: 0,
       enemySelected: "",
       possibilities: [
-        { name: 'Papel', classType: 'game__paper'},
-        { name: 'Tijera', classType: 'game__scissor'},
-        { name: 'Piedra', classType: 'game__rock'},
+        { name: "Papel", classType: "game__paper" },
+        { name: "Tijera", classType: "game__scissor" },
+        { name: "Piedra", classType: "game__rock" },
       ],
       isLoading: false,
       participants: {
-        you: '',
-        rival: ''
-      }
+        you: "",
+        rival: "",
+      },
     };
   },
   methods: {
     onSelected(name, classType) {
-
       this.participants.you = classType;
       this.typeSelected = name;
       this.isProcessing = true;
@@ -83,6 +82,7 @@ export default {
           const enemy = Math.floor(
             Math.random() * (this.max - this.min + 1) + this.min
           );
+
           this.enemySelected = this.possibilities[enemy].name;
           this.validate();
         }, 2000);
@@ -95,6 +95,9 @@ export default {
     validate() {
       if (this.enemySelected == this.typeSelected) {
         this.winner = "Empate";
+        this.participants.rival = this.possibilities.find(
+          (p) => p.name == this.enemySelected
+        ).classType;
       } else {
         if (this.enemySelected == "Papel" && this.typeSelected == "Tijera") {
           this.winner = "Has Ganado";
@@ -116,7 +119,9 @@ export default {
           this.score++;
         } else {
           this.winner = "Has Perdido";
-          this.participants.rival = this.possibilities.find(p => p.name == this.enemySelected).classType;
+          this.participants.rival = this.possibilities.find(
+            (p) => p.name == this.enemySelected
+          ).classType;
           if (this.score > 0) {
             this.score--;
           }
